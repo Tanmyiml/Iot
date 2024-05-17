@@ -195,14 +195,10 @@
     <script>
         document.getElementById("booking-form").addEventListener("submit", function(event) {
             event.preventDefault();
-
-            // Get form values
             const departure = document.getElementById("departure").value;
             const destination = document.getElementById("destination").value;
             const date = document.getElementById("date").value;
             const passengers = document.getElementById("passengers").value;
-
-            // Validation
             if (departure.trim() === "") {
                 alert("Please enter departure city.");
                 return;
