@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+<style>    
+body {
+    background: linear-gradient(to right, #a5bfca, #459dba, #dbecf4);
+    font-family: 'Poppins', sans-serif;
+    background-image: url('https://img.freepik.com/premium-photo/diagonal-moscow-metro-station-bokeh-background-hd_199726-11131.jpg?size=626&ext=jpg&ga=GA1.1.867424154.1714348800&semt=ais');
+    background-position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#form {
+    width: 300px;
+    margin: 20vh auto 0 auto;
+    padding: 20px;
+    background-color: whitesmoke;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+#form h1 {
+    color:rgb(22, 95, 122);
+    text-align: center;
+}
+#form button {
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    color: white;
+    background-color: rgb(24, 114, 141);
+    border: none;
+    border-radius: 4px;
+}
+#form button:hover{
+    background-color: rgb(75, 144, 165);
+}
+.input-control {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-control input {
+    border: 2px solid #f0f0f0;
+	border-radius: 6px;
+	display: block;
+	font-size: 10px;
+	padding: 5px;
+	width: 100%;
+}
+
+.input-control input:hover{
+    border: 2px solid rgb(95, 163, 183);;
+	border-radius: 6px;
+	display: block;
+	font-size: 10px;
+	padding: 5px;
+	width: 100%;
+}
+
+.input-control input:focus {
+    outline: 0;
+}
+
+.input-control.success input {
+    border-color: #09c372;
+}
+
+.input-control.error input {
+    border-color: #ff3860;
+}
+
+.input-control .error {
+    color: #ff3860;
+    font-size: 9px;
+    height: 13px;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <form id="form" action="project mainpage.html">
+            <h1 id="p">Sign in</h1>
+            <div class="input-control">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="text">
+                <div class="error" id="email-error"></div>
+            </div>
+            <div class="input-control">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password">
+                <div class="error" id="password-error"></div>
+            </div>
+            <div class="input-control" style="margin-bottom:10px">
+                <label for="password2">Confirm Password</label>
+                <input id="password2" name="password2" type="password">
+                <div class="error" id="password2-error"></div>
+            </div>
+            <button type="button" onclick="validateForm()">Sign in</button>
+        </form>
+    </div>     
+
+<script>
+function validateForm() {
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var password2 = document.getElementById('password2').value;
+    var emailError = document.getElementById('email-error');
+    var passwordError = document.getElementById('password-error');
+    var password2Error = document.getElementById('password2-error');
+    var valid = true;
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        emailError.innerText = 'Please enter a valid email address.';
+        valid = false;
+    } else {
+        emailError.innerText = '';
+    }
+    if (password.length < 8) {
+        passwordError.innerText = 'Password must be at least 8 characters long.';
+        valid = false;
+    } else {
+        passwordError.innerText = '';
+    }
+    if (password !== password2) {
+        password2Error.innerText = 'Passwords do not match.';
+        valid = false;
+    } else {
+        password2Error.innerText = '';
+    }
+
+    if (valid) {
+        window.location.href = 'project mainpage.html';
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Trains</title>
+<link rel="stylesheet" href="UserHome_Css.css">
+<style>
+    body {
+        background-image: url('https://img.freepik.com/premium-photo/diagonal-moscow-metro-station-bokeh-background-hd_199726-11131.jpg?size=626&ext=jpg&ga=GA1.1.867424154.1714348800&semt=ais');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        color: #333; 
+        font-family: Arial, sans-serif;
+    }
+
+    header {
+        background-color: #2a5281; 
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .hd {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .tab {
+        background-color: rgba(255, 255, 255, 0.8); 
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+    }
+
+    .tab label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .tab input[type="text"],
+    .tab input[type="date"],
+    .tab input[type="number"],
+    .tab input[type="submit"],
+    .tab select {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc; 
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .tab input[type="submit"] {
+        background-color: #007BFF; 
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .tab input[type="submit"]:hover {
+        background-color: #0056b3; 
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        border-radius: 10px;
+        margin: 20px auto;
+    }
+
+    .design-container {
+        width: 100%;
+        max-width: 700px;
+    }
+
+    .colour-1 {
+        background-color: #f4f4f4;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    #main {
+        width: 800px;
+    }
+    
+    footer {
+                background-color: #27578b;
+                color: #fff;
+                padding: 10px;
+                text-align: center;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+    }
+
+    footer p {
+                font-size: 0.7rem;
+    }
+    @media (max-width: 768px) {
+        .container {
+            width: 90%;
+        }
+
+        .design-container {
+            width: 100%;
+        }
+
+        #main {
+            width: 100%;
+        }
+    }
+
+</style>
+</head>
+<body>
+    <header>
+        <h1 class="hd">ExpressTickets Booking</h1>
+    </header>
+
+    <div class="container" id="main">
+        <div class="design-container">
+            <div class="colour-1">
+                <form action="booktrains" class="tab red" method="post" onsubmit="return validateForm()">
+                    <label for="trainnumber">Train Number:</label>
+                    <input type="text" name="trainnumber" id="trainnumber" placeholder="Enter Train Number"><br /><br />
+
+                    <label for="seats">Number of Seats:</label>
+                    <input type='number' name='seats' id="seats" placeholder="Enter Number of Seats"><br/><br/>
+
+                    <label>Trip Type:</label><br>
+                    <label for="oneway"><input type="radio" id="oneway" name="trip" value="oneway">One Way</label>
+                    <label for="return"><input type="radio" id="return" name="trip" value="return">Return</label><br/><br/>
+
+                    <label for="departure">Departure Date:</label>
+                    <input type="date" id="departure"><br/><br/>
+
+                    <label for="returnDate">Return Date:</label>
+                    <input type="date" id="returnDate"><br/><br/>
+
+                    <label for="adults">Number of Adults:</label>
+                    <input type ="number" id="adults" class="person" placeholder="Enter Number of Adults">
+
+                    <label for="children">Number of Children:</label>
+                    <input type="number" id="children" class="person" placeholder="Enter Number of Children"><br/><br/>
+
+                    <h2>Passenger Details</h2>
+                    <div style="display: flex; flex-wrap: wrap;">
+                        <input type="text" id="firstName" class="person" placeholder="First Name">
+                        <input type="text" id="lastName" class="person" placeholder="Last Name">
+                    </div><br/>
+
+                    <label for="gender">Gender:</label>
+                    <select id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select><br/><br/>
+
+                    <label for="travelClass">Travel Class:</label>
+                    <select id="travelClass">
+                        <option value="firstclass">First Class/1A</option>
+                        <option value="ac2tier">AC 2tier/2A</option>
+                        <option value="ac3tier">AC 3tier/3A</option>
+                        <option value="executive">Executive class chair car/Economy Class</option>
+                        <option value="acchaircar">AC Chair Car</option>
+                        <option value="sleeper">Sleeper Class</option>
+                        <option value="second">Second Class</option>
+                        <option value="general">General</option>
+                        <option value="tatkal">Tatkal</option>
+                    </select><br/><br/>
+
+                    <h2>Other Preferences</h2>
+                    <label for="autoUpgrade"><input type="checkbox" id="autoUpgrade" name="preferences" value="autoUpgrade">Consider for auto Upgradation</label><br/>
+                    <label for="bookIfConfirmed"><input type="checkbox" id="bookIfConfirmed" name="preferences" value="bookIfConfirmed">Book only if confirmed berths are allotted</label><br/>
+
+                    <label for="berthAllocation">Berth Allocation:</label><br/>
+                    <select id="berthAllocation">
+                        <option value="lower">Lower Berth</option>
+                        <option value="upper">Upper Berth</option>
+                        <option value="sideupper">Side Upper</option>
+                        <option value="middle">Middle Berth</option>
+                    </select><br/><br/>
+
+                    <h2>Payment Mode</h2><br/>
+                    <label for="creditDebit"><input type="checkbox" id="creditDebit" name="paymentMode" value="creditDebit">Pay through Credit/Debit Cards/Net Banking/Bharat QR/Pay on delivery</label>
+                    <h5>Convenience Fee: $30/- +GST</h5>
+                    <label for="bhimUPI"><input type="checkbox" id="bhimUPI" name="paymentMode" value="bhimUPI">Pay through BHIM/UPI</label>
+                    <h5>Convenience Fee: $20/- +GST</h5><br/>
+                    <input type="submit" value=" Book Now "><br />
+                </form> 
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Terms of Service | Privacy Policy | © 2024 ExpressTickets</p>
+    </footer>
+
+    <script>
+        function validateForm() {
+            var trainnumber = document.getElementById("trainnumber").value;
+            var seats = document.getElementById("seats").value;
+            var departure = document.getElementById("departure").value;
+            var returnDate = document.getElementById("returnDate").value;
+            var adults = document.getElementById("adults").value;
+            var children = document.getElementById("children").value;
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+
+            if (trainnumber == "" || seats == "" || departure == "" || adults == "" || children == "" || firstName == "" || lastName == "") {
+                alert("Please fill out all required fields");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
